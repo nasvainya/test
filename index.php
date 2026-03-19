@@ -1,98 +1,54 @@
-    <?php
-	echo "Задание 1. Тест\n";
-	$num1 = 10;
-	$num2 = 20;
-	$result = $num1 * 0.4 + $num2 * 0.84;
-	echo "Сумма 40% от $num1 и 84% от $num2 = $result\n";
-
-	echo "Задание 2. Тест1\n";
-	$beb = 12;
-	echo "Проверка числва $beb\n";
-	if ($beb > 10){
-	$beb += 100;
-	} else {
-	$beb -= 30;
-	}
-	echo "После проврки число стало равняться - $beb";
-
-	echo "Задание 2. Тест2\n";
-        $beb2 = 6;
-        echo "Проверка числва $beb2\n";
-        if ($beb2 > 10){
-        $beb2 += 100;
-        } else {
-        $beb2 -= 30; 
-        }
-        echo "После проверки число стало равняться - $beb2\n";
-
-	echo "Задание 3. Тест1\n";
-	$ul = 6;
-	echo "Проверка числа $ul на четность\n";
-	if ($ul%2 == 0){
-	$ul /= 2;
-	} else {
-	$ul *= 3;
-	}
-	echo "После провреки число стало равняться - $ul\n";
-
-	echo "Задание 3. Тест2\n";
-        $ul2 = 9;
-        echo "Проверка числа $ul2 на четность\n";
-        if ($ul2%2 == 0){
-        $ul2 /= 2;
-        } else {
-        $ul2 *= 3;
-        }
-        echo "После провреки число стало равняться - $ul2\n";
-
-	echo "Здаание 4. Тест1\n";
-	$min = 26;
-	if ($min > 0 && $min < 15){
-	echo "Число $min находится в первой четверти часа\n";
-	} elseif ($min > 15 && $min < 30){
-	echo "Число $min находится во второй четверти часа\n";
-	}elseif ($min > 30 && $min < 45){
-	echo "Число $min находится в третей четверти часа\n";
-	} else {
-	echo "Число $min находится в чeтвертой четверти часа\n";
-	}
-
-	echo "Задание 4. Тест2\n";
-        $min2 = 5;
-        if ($min2 > 0 && $min2 < 15){
-        echo "Число $min2 находится в первой четверти часа\n";
-        } elseif ($min2 > 15 && $min2 < 30){
-        echo "Число $min находится во второй четверти часа\n";
-        }elseif ($min2 > 30 && $min2 < 45){
-        echo "Число $min2 находится в третей четверти часа\n";
-        } else {
-        echo "Число $min2 находится в четвертой четверти часа\n";
-        }
-
-	echo "Задание 4. Тест3\n";
-        $min3 = 35;
-        if ($min3 > 0 && $min3 < 15){
-        echo "Число $min3 находится в первой четверти часа\n";
-        } elseif ($min3 > 15 && $min3 < 30){
-        echo "Число $min3 находится во второй четверти часа\n";
-        }elseif ($min3 > 30 && $min3 < 45){
-        echo "Число $min3 находится в третей четверти часа\n";
-        } else {
-        echo "Число $min3 находится в четвертой четверти часа\n";
-        } 
-
-	echo "Задание 4. Тест4\n";
-        $min4 = 46;
-        if ($min4 > 0 && $min4 < 15){
-        echo "Число $min4 находится в первой четверти часа\n";
-        } elseif ($min4 > 15 && $min4 < 30){
-        echo "Число $min4 находится во второй четверти часа\n";
-        }elseif ($min4 > 30 && $min4 < 45){
-        echo "Число $min4 находится в третей четверти часа\n";
-        } else {
-        echo "Число $min4 находится в четвертой четверти часа\n";
-        }
-
-    ?>
-    
-    
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Регистрация</h1>
+        
+        <form action="action.php" method="POST">
+            <div class="form-group">
+                <label for="name"><strong>Имя:</strong></label>
+                <input type="text" id="name" name="name" placeholder="Введите имя" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email"><strong>Почта:</strong></label>
+                <input type="email" id="email" name="email" placeholder="name@example.ru" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password"><strong>Пароль:</strong></label>
+                <input type="password" id="password" name="password" placeholder="Введите пароль" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="confirm_password"><strong>Подтвердите пароль:</strong></label>
+                <input type="password" id="confirm_password" name="confirm_password" placeholder="Повторите пароль" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="gender"><strong>Пол:</strong></label>
+                <select id="gender" name="gender" required>
+                    <option value="" disabled selected>Выберите пол</option>
+                    <option value="male">Мужской</option>
+                    <option value="female">Женский</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="btn">Зарегистрироваться</button>
+            <div class="checkbox-group">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms" class="checkbox-label">
+                    Создавая учетную запись вы соглашаетесь с нашими 
+                    <a href="/terms">Условиями и конфиденциальностью</a> 
+                </label>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
