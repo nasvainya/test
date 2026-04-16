@@ -1,67 +1,109 @@
 <?php
-class Pompom{
-    public $name;
-    private $age;
-    public $salary;
+abstract class Figure{
+    private $area;
+    private $color;
+    private $sidesCount;
+
+abstract public function infoAbout();
+}
+
+interface Area{
+    public function getArea();
+}
+
+class Rectangle extends Figure implements Area{
+    private $a;
+    private $b;
+
+    public function __construct($a, $b)
+    {
+        $this->a = $a;
+        $this->b = $b;
+        $this->sidesCount = 4;
+    }
+
+    public function getArea()
+    {
+        $this->area = $this->a * $this->b;
+        return $this->area;
+    }
+
+    public function infoAbout(){
+        return "Это класс прямоугольника. У него {$this->sidesCount} стороны.";
+    }
+}
+
+class Square extends Figure implements Area{
+    private $a;
     
-    public function __construct($name, $age, $salary){
-        $this->name = $name;
-        $this->age = $age;
-        $this->salary = $salary;
-    }
-
-    public function getName(){
-        return $this->name;
-    }
-
-    public function getAge(){
-        return $this->age;
-    }
-
-    public function getSalary(){
-        return $this->salary;
-    }
-
-    private function checkAge($newAge)
+    public function __construct($a)
     {
-        if ($newAge >= 18) {
-            return true;
-        } else {
-            return false;
-        }
+        $this->a = $a;
+
+        $this->sidesCount = 4;
     }
 
-    public function setAge($newAge)
+    public function getArea()
     {
-        if ($this->checkAge($newAge)) {
-            $this->age = $newAge;
-            echo "Возраст успешно изменён на {$newAge}<br>";
-        } else {
-            echo "Вам работать в нашей компании еще рано<br>";
-        }
+        $this->area = $this->a * $this->a;
+        return $this->area;
     }
-};
-$worker1 = new Pompom("Роналдо", 25, 1000);
-$worker2 = new Pompom("Усаги", 30, 2000);
 
-$sumSalary = $worker1->getSalary() + $worker2->getSalary();
-$sumAge = $worker1->getAge() + $worker2->getAge();
+    public function infoAbout(){
+        return "Это класс квадрата. У него {$this->sidesCount} стороны.";
+    }
+}
 
-echo "Сумма зарплат работников: " . $sumSalary . "<br>";
-echo "Сумма возрастов работников: " . $sumAge . "<br><br>";
+class Triangle extends Figure implements Area{
+    private $a;
+    private $b;
+    private $c;
+    
+    public function __construct($a, $b, $c)
+    {
+        $this->a = $a;
+        $this->b = $b;
+        $this->c = $c;
 
-echo "Работник 1: " . $worker1->getName() . ", возраст: " . $worker1->getAge() . ", зарплата: " . $worker1->getSalary() . "<br>";
-echo "Работник 2: " . $worker2->getName() . ", возраст: " . $worker2->getAge() . ", зарплата: " . $worker2->getSalary() . "<br><br>";
+        $this->sidesCount = 3;
+    }
 
-echo "Попытка изменить возраст работника Роналдо на 16:<br>";
-$worker1->setAge(16);
-echo "Текущий возраст работника Роналдо: " . $worker1->getAge() . "<br><br>";
+    public function getArea()
+    {
+        $p = ($this->a + $this->b + $this->c) / 2;
+        $this->area = sqrt($p * ($p - $this->a) * ($p - $this->b) * ($p - $this->c));
+        return $this->area;
+    }
 
-echo "Попытка изменить возраст работника Роналдо на 20:<br>";
-$worker1->setAge(20);
-echo "Текущий возраст работника Роналдо: " . $worker1->getAge() . "<br><br>";
+    public function infoAbout(){
+        return "Это класс треугольника. У него {$this->sidesCount} стороны.";
+    }
+}
 
-echo "Проверка setAge:<br>";
-$worker2->setAge(35);
-$worker2->setAge(15);
+$rect1 = new Rectangle(5, 3);
+$rect2 = new Rectangle(7, 4);
+
+$square1 = new Square(4);
+$square2 = new Square(6);
+
+$triangle1 = new Triangle(3, 4, 5);
+$triangle2 = new Triangle(5, 5, 6);
+
+echo $rect1->infoAbout() . "<br>";
+echo "Площадь прямоугольника (5×3): " . $rect1->getArea() . "<br><br>";
+
+echo $rect2->infoAbout() . "<br>";
+echo "Площадь прямоугольника (7×4): " . $rect2->getArea() . "<br><br>";
+
+echo $square1->infoAbout() . "<br>";
+echo "Площадь квадрата (сторона 4): " . $square1->getArea() . "<br><br>";
+
+echo $square2->infoAbout() . "<br>";
+echo "Площадь квадрата (сторона 6): " . $square2->getArea() . "<br><br>";
+
+echo $triangle1->infoAbout() . "<br>";
+echo "Площадь треугольника (3,4,5): " . $triangle1->getArea() . "<br><br>";
+
+echo $triangle2->infoAbout() . "<br>";
+echo "Площадь треугольника (5,5,6): " . $triangle2->getArea() . "<br>";
 ?>
